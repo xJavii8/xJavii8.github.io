@@ -450,13 +450,16 @@
 		});
 	}
 	
-	// Mobile menu toggle handler
-	document.querySelector('.mobile-menu-toggle')?.addEventListener('click', toggleMobileMenu);
-	
 	// Initialize when DOM is loaded
 	document.addEventListener('DOMContentLoaded', () => {
 		updateNavText();
 		initNavigation();
+		
+		// Mobile menu toggle handler
+		const mobileToggle = document.querySelector('.mobile-menu-toggle');
+		if (mobileToggle) {
+			mobileToggle.addEventListener('click', toggleMobileMenu);
+		}
 	});
 	
 	// Update text when language changes
