@@ -205,6 +205,12 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 				}
 			});
 		</script>
+		
+		<footer class="footer">
+			<div class="container">
+				<p class="footer-text">&copy; 2025 Javi</p>
+			</div>
+		</footer>
 	</body>
 </html>
 
@@ -356,6 +362,74 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 	@media (max-width: 768px) {
 		.container {
 			padding: 0 1rem;
+			max-width: calc(100% - 2rem);
+		}
+		
+		body {
+			overflow-x: hidden;
+		}
+		
+		main {
+			padding-top: 80px;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.container {
+			padding: 0 0.75rem;
+			max-width: calc(100% - 1.5rem);
+		}
+		
+		main {
+			padding-top: 70px;
+		}
+		
+		section {
+			padding: 3rem 0;
+			margin: 0;
+		}
+	}
+	
+	/* Footer Styles */
+	.footer {
+		background: var(--bg-glass);
+		backdrop-filter: blur(20px);
+		border-top: 1px solid var(--border-color);
+		padding: 2rem 0;
+		margin-top: 4rem;
+		text-align: center;
+	}
+	
+	.footer-text {
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+		margin: 0;
+		transition: color 0.3s ease;
+	}
+	
+	.footer-text:hover {
+		color: var(--text-accent);
+	}
+	
+	@media (max-width: 768px) {
+		.footer {
+			padding: 1.5rem 0;
+			margin-top: 3rem;
+		}
+		
+		.footer-text {
+			font-size: 0.85rem;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.footer {
+			padding: 1.25rem 0;
+			margin-top: 2rem;
+		}
+		
+		.footer-text {
+			font-size: 0.8rem;
 		}
 	}
 	
