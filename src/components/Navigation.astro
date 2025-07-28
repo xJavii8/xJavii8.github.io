@@ -1,0 +1,402 @@
+---
+// Navigation component with theme toggle and section selector
+---
+
+<nav class="nav glass" id="navigation">
+	<div class="nav-container">
+		<div class="nav-brand">
+			<span class="gradient-text" data-en="Portfolio" data-es="Portfolio">Portfolio</span>
+		</div>
+		
+		<ul class="nav-links">
+			<li><a href="#inicio" data-en="Home" data-es="Inicio">Inicio</a></li>
+			<li><a href="#sobre-mi" data-en="About" data-es="Sobre mí">Sobre mí</a></li>
+			<li><a href="#experiencia" data-en="Experience" data-es="Experiencia">Experiencia</a></li>
+			<li><a href="#educacion" data-en="Education" data-es="Educación">Educación</a></li>
+			<li><a href="#voluntariado" data-en="Volunteering" data-es="Voluntariado">Voluntariado</a></li>
+			<li><a href="#contacto" data-en="Contact" data-es="Contacto">Contacto</a></li>
+		</ul>
+		
+		<div class="nav-controls">
+			<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+				<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="12" cy="12" r="5"></circle>
+					<line x1="12" y1="1" x2="12" y2="3"></line>
+					<line x1="12" y1="21" x2="12" y2="23"></line>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+					<line x1="1" y1="12" x2="3" y2="12"></line>
+					<line x1="21" y1="12" x2="23" y2="12"></line>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+				</svg>
+				<svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+			</button>
+			
+			<button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</div>
+</nav>
+
+<style>
+	.nav {
+		position: fixed;
+		top: 1rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 9999;
+		width: calc(100% - 2rem);
+		max-width: 1000px;
+		padding: 0.75rem 1.5rem;
+		transition: all 0.3s ease;
+		
+		/* Liquid Glass Effect */
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(20px) saturate(180%);
+		-webkit-backdrop-filter: blur(20px) saturate(180%);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		box-shadow: 
+			0 8px 32px rgba(0, 0, 0, 0.1),
+			0 2px 8px rgba(0, 0, 0, 0.05),
+			inset 0 1px 0 rgba(255, 255, 255, 0.1);
+		
+		/* Subtle gradient overlay */
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.nav::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.1) 0%,
+			rgba(255, 255, 255, 0.05) 50%,
+			rgba(255, 255, 255, 0.02) 100%
+		);
+		border-radius: 20px;
+		pointer-events: none;
+		z-index: -1;
+	}
+	
+	/* Dark mode adjustments */
+	[data-theme="dark"] .nav {
+		background: rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	
+	[data-theme="dark"] .nav::before {
+		background: linear-gradient(
+			135deg,
+			rgba(255, 255, 255, 0.05) 0%,
+			rgba(255, 255, 255, 0.02) 50%,
+			rgba(255, 255, 255, 0.01) 100%
+		);
+	}
+	
+	.nav-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+	
+	.nav-brand {
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+	
+	.nav-links {
+		display: flex;
+		list-style: none;
+		gap: 2rem;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.nav-links a {
+		color: var(--text-secondary);
+		text-decoration: none;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		position: relative;
+		padding: 0.5rem 1rem;
+		border-radius: 12px;
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+	}
+	
+	.nav-links a:hover,
+	.nav-links a.active {
+		color: var(--text-accent);
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 
+			0 4px 16px rgba(0, 0, 0, 0.1),
+			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		transform: translateY(-1px);
+	}
+	
+	/* Dark mode nav links */
+	[data-theme="dark"] .nav-links a:hover,
+	[data-theme="dark"] .nav-links a.active {
+		background: rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	
+	.nav-links a::after {
+		content: '';
+		position: absolute;
+		bottom: 4px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 0;
+		height: 2px;
+		background: var(--gradient-primary);
+		transition: width 0.3s ease;
+		border-radius: 1px;
+	}
+	
+	.nav-links a:hover::after,
+	.nav-links a.active::after {
+		width: 60%;
+	}
+	
+	.nav-controls {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+	
+	.theme-toggle {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		color: var(--text-secondary);
+		cursor: pointer;
+		padding: 0.5rem;
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		box-shadow: 
+			0 4px 16px rgba(0, 0, 0, 0.1),
+			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	}
+	
+	.theme-toggle:hover {
+		color: var(--text-accent);
+		background: rgba(255, 255, 255, 0.12);
+		transform: scale(1.1);
+		box-shadow: 
+			0 6px 20px rgba(0, 0, 0, 0.15),
+			inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	}
+	
+	/* Dark mode theme toggle */
+	[data-theme="dark"] .theme-toggle {
+		background: rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	
+	[data-theme="dark"] .theme-toggle:hover {
+		background: rgba(0, 0, 0, 0.3);
+	}
+	
+	.theme-toggle svg {
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		position: absolute;
+	}
+	
+	/* Estados base de los iconos */
+	.sun-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
+	.moon-icon {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	/* Modo oscuro: mostrar sol */
+	[data-theme="dark"] .sun-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
+	[data-theme="dark"] .moon-icon {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	/* Modo claro: mostrar luna */
+	[data-theme="light"] .sun-icon {
+		opacity: 0;
+		transform: rotate(-180deg) scale(0.8);
+	}
+	
+	[data-theme="light"] .moon-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
+	.mobile-menu-toggle {
+		display: none;
+		flex-direction: column;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		gap: 3px;
+	}
+	
+	.mobile-menu-toggle span {
+		width: 20px;
+		height: 2px;
+		background: var(--text-secondary);
+		transition: all 0.3s ease;
+	}
+	
+	@media (max-width: 768px) {
+		.nav {
+			width: calc(100% - 1rem);
+			padding: 0.5rem 1rem;
+		}
+		
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: var(--bg-glass);
+			backdrop-filter: blur(20px);
+			border: 1px solid var(--border-color);
+			border-radius: 16px;
+			margin-top: 0.5rem;
+			padding: 1rem;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		
+		.nav-links.active {
+			display: flex;
+		}
+		
+		.mobile-menu-toggle {
+			display: flex;
+		}
+		
+		.nav-brand {
+			font-size: 1.25rem;
+		}
+	}
+</style>
+
+<script>
+	// Update navigation text based on language
+	function updateNavText() {
+		const lang = document.documentElement.getAttribute('data-lang') || 'en';
+		const elements = document.querySelectorAll('[data-en][data-es]');
+		
+		elements.forEach(element => {
+			const text = element.getAttribute(`data-${lang}`);
+			if (text) {
+				element.textContent = text;
+			}
+		});
+	}
+	
+	
+	// Mobile menu toggle
+	function toggleMobileMenu() {
+		const navLinks = document.querySelector('.nav-links');
+		navLinks.classList.toggle('active');
+	}
+	
+	// Smooth scroll and active link highlighting
+	function initNavigation() {
+		const links = document.querySelectorAll('.nav-links a');
+		const sections = document.querySelectorAll('section[id]');
+		
+		// Add click handlers for smooth scroll
+		links.forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const targetId = link.getAttribute('href').substring(1);
+				const targetSection = document.getElementById(targetId);
+				
+				if (targetSection) {
+					targetSection.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start'
+					});
+				}
+				
+				// Close mobile menu if open
+				const navLinks = document.querySelector('.nav-links');
+				navLinks.classList.remove('active');
+			});
+		});
+		
+		// Highlight active section on scroll
+		window.addEventListener('scroll', () => {
+			let current = '';
+			
+			sections.forEach(section => {
+				const sectionTop = section.offsetTop;
+				const sectionHeight = section.clientHeight;
+				
+				if (window.scrollY >= sectionTop - 100) {
+					current = section.getAttribute('id');
+				}
+			});
+			
+			links.forEach(link => {
+				link.classList.remove('active');
+				if (link.getAttribute('href') === `#${current}`) {
+					link.classList.add('active');
+				}
+			});
+		});
+	}
+	
+	// Mobile menu toggle handler
+	document.querySelector('.mobile-menu-toggle')?.addEventListener('click', toggleMobileMenu);
+	
+	// Initialize when DOM is loaded
+	document.addEventListener('DOMContentLoaded', () => {
+		updateNavText();
+		initNavigation();
+	});
+	
+	// Update text when language changes
+	const observer = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'data-lang') {
+				updateNavText();
+			}
+		});
+	});
+	
+	observer.observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ['data-lang']
+	});
+</script>

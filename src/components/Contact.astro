@@ -1,0 +1,332 @@
+---
+// Contact section component
+---
+
+<section id="contacto" class="contact-section">
+	<div class="container">
+		<div class="section-header fade-in">
+			<h2 class="section-title gradient-text" data-en="Contact" data-es="Contacto">Contacto</h2>
+			<p class="section-subtitle" data-en="Let's work together" data-es="Trabajemos juntos">Trabajemos juntos</p>
+		</div>
+		
+		<div class="contact-content">
+			<div class="contact-cards-container">
+				<div class="contact-card modern-contact-card">
+					<div class="card-icon">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+							<polyline points="22,6 12,13 2,6"/>
+						</svg>
+					</div>
+					<h3 data-en="Get in touch" data-es="Ponte en contacto">Ponte en contacto</h3>
+					<p data-en="I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology." data-es="Siempre estoy abierto a discutir nuevas oportunidades, proyectos interesantes, o simplemente charlar sobre tecnología.">Siempre estoy abierto a discutir nuevas oportunidades, proyectos interesantes, o simplemente charlar sobre tecnología.</p>
+					
+					<div class="contact-methods">
+						<div class="contact-method">
+							<div class="method-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+									<polyline points="22,6 12,13 2,6"></polyline>
+								</svg>
+							</div>
+							<div class="method-info">
+								<h4>Email</h4>
+								<a href="mailto:fjaviermm.dev@gmail.com">fjaviermm.dev@gmail.com</a>
+							</div>
+						</div>
+						
+						<div class="contact-method">
+							<div class="method-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+									<circle cx="12" cy="10" r="3"></circle>
+								</svg>
+							</div>
+							<div class="method-info">
+								<h4 data-en="Location" data-es="Ubicación">Ubicación</h4>
+								<span data-en="Murcia, Spain" data-es="Murcia, España">Murcia, España</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="social-links">
+						<h4 data-en="Connect with Me" data-es="Conéctate Conmigo">Conéctate Conmigo</h4>
+						<div class="social-grid">
+							<a href="https://linkedin.com/in/fjaviermm" class="social-link" target="_blank" rel="noopener noreferrer">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+									<rect x="2" y="9" width="4" height="12"></rect>
+									<circle cx="4" cy="4" r="2"></circle>
+								</svg>
+								<span>LinkedIn</span>
+							</a>
+							
+							<a href="mailto:fjaviermm.dev@gmail.com" class="social-link">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+									<polyline points="22,6 12,13 2,6"></polyline>
+								</svg>
+								<span>Email</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<style>
+	.contact-section {
+		padding: 6rem 0;
+		position: relative;
+	}
+	
+	.section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+	
+	.section-title {
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	
+	.section-subtitle {
+		font-size: 1.125rem;
+		color: var(--text-secondary);
+	}
+	
+	.contact-content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.contact-cards-container {
+		display: flex;
+		justify-content: center;
+		max-width: 600px;
+		width: 100%;
+	}
+	
+	@keyframes contactFloat {
+		0%, 100% { transform: translateY(0px); }
+		50% { transform: translateY(-10px); }
+	}
+	
+	.modern-contact-card {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		padding: 2.5rem;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		overflow: hidden;
+		animation: contactFloat 6s ease-in-out infinite;
+		width: 100%;
+		text-align: center;
+	}
+	
+	.modern-contact-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: linear-gradient(90deg, var(--accent-color), #00a8cc, var(--accent-color));
+		transform: scaleX(0);
+		transition: transform 0.3s ease;
+	}
+	
+	.modern-contact-card:hover::before {
+		transform: scaleX(1);
+	}
+	
+	.modern-contact-card:hover {
+		transform: translateY(-8px) scale(1.02);
+		box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+		border-color: rgba(0, 212, 255, 0.3);
+	}
+	
+	.card-icon {
+		width: 60px;
+		height: 60px;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		border-radius: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 1.5rem;
+		color: white;
+		transition: transform 0.3s ease;
+	}
+	
+	.modern-contact-card:hover .card-icon {
+		transform: scale(1.1) rotate(5deg);
+	}
+	
+	.modern-contact-card h3 {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 1rem;
+	}
+	
+	.modern-contact-card p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 2rem;
+	}
+	
+	.contact-methods {
+		margin-bottom: 2rem;
+	}
+	
+	.contact-method {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		padding: 1rem;
+		border-radius: 12px;
+		transition: all 0.3s ease;
+	}
+	
+	.contact-method:hover {
+		background: var(--bg-secondary);
+		transform: translateX(5px);
+	}
+	
+	.method-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: var(--gradient-primary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		flex-shrink: 0;
+	}
+	
+	.method-info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 48px;
+	}
+	
+	.method-info h4 {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 0.25rem;
+		margin-top: 0;
+	}
+	
+	.method-info a,
+	.method-info span {
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+	
+	.method-info a:hover {
+		color: var(--text-accent);
+	}
+	
+	.social-links h4 {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin-bottom: 1rem;
+	}
+	
+	.social-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: 1rem;
+	}
+	
+	.social-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: all 0.3s ease;
+		font-size: 0.875rem;
+	}
+	
+	.social-link:hover {
+		background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+		color: white;
+		border-color: transparent;
+		transform: translateY(-2px);
+	}
+	
+
+	
+	@media (max-width: 768px) {
+		.contact-cards-container {
+			padding: 0 1rem;
+		}
+		
+		.modern-contact-card {
+			padding: 2rem 1.5rem;
+		}
+		
+		.card-icon {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 1rem;
+		}
+		
+		.modern-contact-card h3 {
+			font-size: 1.25rem;
+		}
+		
+		.contact-method {
+			flex-direction: column;
+			text-align: center;
+			gap: 0.5rem;
+		}
+		
+		.social-grid {
+			grid-template-columns: 1fr;
+			gap: 0.75rem;
+		}
+		
+		.social-link {
+			justify-content: center;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.contact-cards-container {
+			padding: 0 0.5rem;
+		}
+		
+		.modern-contact-card {
+			padding: 1.5rem 1rem;
+		}
+		
+		.modern-contact-card h3 {
+			font-size: 1.125rem;
+		}
+		
+		.modern-contact-card p {
+			font-size: 0.9rem;
+		}
+	}
+</style>

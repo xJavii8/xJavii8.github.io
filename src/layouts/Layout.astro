@@ -1,0 +1,379 @@
+---
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "Portfolio - Software Engineer", description = "Portfolio profesional de ingeniero de software especializado en desarrollo backend" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		
+
+		
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+		
+		<!-- Language Detection Script -->
+		<!-- GSAP Scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+		
+		<script defer>
+			// Wait for GSAP to load
+			window.addEventListener('load', function() {
+				if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+					gsap.registerPlugin(ScrollTrigger);
+				}
+			});
+			
+			// Detect browser language and set appropriate language
+			function detectLanguage() {
+				const browserLang = navigator.language || navigator.languages[0];
+				const isSpanish = browserLang.startsWith('es');
+				const lang = isSpanish ? 'es' : 'en';
+				document.documentElement.lang = lang;
+				document.documentElement.setAttribute('data-lang', lang);
+				
+				// Update text content based on language
+				updateLanguageContent(lang);
+			}
+			
+			function updateLanguageContent(lang) {
+				const elements = document.querySelectorAll('[data-en], [data-es]');
+				elements.forEach(element => {
+					const text = element.getAttribute(`data-${lang}`);
+					if (text) {
+						element.textContent = text;
+					}
+				});
+				
+				// Update placeholders
+				const inputs = document.querySelectorAll('[data-en-placeholder], [data-es-placeholder]');
+				inputs.forEach(input => {
+					const placeholder = input.getAttribute(`data-${lang}-placeholder`);
+					if (placeholder) {
+						input.placeholder = placeholder;
+					}
+				});
+			}
+			
+			// Theme toggle functionality
+			function initTheme() {
+				// Detect system theme preference
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const systemTheme = prefersDark ? 'dark' : 'light';
+				const savedTheme = localStorage.getItem('theme') || systemTheme;
+				document.documentElement.setAttribute('data-theme', savedTheme);
+				
+				// Set initial icon state
+				setTimeout(() => {
+					const sunIcon = document.querySelector('.sun-icon');
+					const moonIcon = document.querySelector('.moon-icon');
+					
+					if (sunIcon && moonIcon) {
+						if (savedTheme === 'dark') {
+							// Dark mode: show sun
+							sunIcon.style.opacity = '1';
+							sunIcon.style.transform = 'rotate(0deg) scale(1)';
+							moonIcon.style.opacity = '0';
+							moonIcon.style.transform = 'rotate(180deg) scale(0.8)';
+						} else {
+							// Light mode: show moon
+							sunIcon.style.opacity = '0';
+							sunIcon.style.transform = 'rotate(-180deg) scale(0.8)';
+							moonIcon.style.opacity = '1';
+							moonIcon.style.transform = 'rotate(0deg) scale(1)';
+						}
+					}
+				}, 100);
+			}
+			
+			function toggleTheme() {
+				const currentTheme = document.documentElement.getAttribute('data-theme');
+				const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+				document.documentElement.setAttribute('data-theme', newTheme);
+				localStorage.setItem('theme', newTheme);
+				console.log('Theme changed to:', newTheme);
+				
+				// Update icons directly
+				const sunIcon = document.querySelector('.sun-icon');
+				const moonIcon = document.querySelector('.moon-icon');
+				
+				if (sunIcon && moonIcon) {
+					if (newTheme === 'dark') {
+						// Dark mode: show sun
+						sunIcon.style.opacity = '1';
+						sunIcon.style.transform = 'rotate(0deg) scale(1)';
+						moonIcon.style.opacity = '0';
+						moonIcon.style.transform = 'rotate(180deg) scale(0.8)';
+					} else {
+						// Light mode: show moon
+						sunIcon.style.opacity = '0';
+						sunIcon.style.transform = 'rotate(-180deg) scale(0.8)';
+						moonIcon.style.opacity = '1';
+						moonIcon.style.transform = 'rotate(0deg) scale(1)';
+					}
+				}
+			}
+			
+			// Initialize on load
+			detectLanguage();
+			initTheme();
+			
+			// Make toggleTheme available globally
+			window.toggleTheme = toggleTheme;
+			
+			// Initialize GSAP animations when DOM is loaded
+			document.addEventListener('DOMContentLoaded', function() {
+				// Update language content after DOM is loaded
+				const currentLang = document.documentElement.lang || 'es';
+				updateLanguageContent(currentLang);
+				
+				// Register ScrollTrigger plugin
+				if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+					gsap.registerPlugin(ScrollTrigger);
+					
+					// Set initial states for animations
+					gsap.set('.fade-in', { opacity: 0, y: 30 });
+					gsap.set('.slide-in-left', { opacity: 0, x: -50 });
+					gsap.set('.slide-in-right', { opacity: 0, x: 50 });
+					gsap.set('.scale-in', { opacity: 0, scale: 0.8 });
+					
+					// Animate hero section immediately
+					gsap.to('.fade-in', {
+						opacity: 1,
+						y: 0,
+						duration: 1,
+						stagger: 0.2,
+						ease: 'power2.out',
+						delay: 0.5
+					});
+					
+					// Animate other sections on scroll
+					gsap.to('.slide-in-left', {
+						opacity: 1,
+						x: 0,
+						duration: 0.8,
+						stagger: 0.1,
+						ease: 'power2.out',
+						scrollTrigger: {
+							trigger: '.slide-in-left',
+							start: 'top 85%',
+							toggleActions: 'play none none none'
+						}
+					});
+					
+					gsap.to('.slide-in-right', {
+						opacity: 1,
+						x: 0,
+						duration: 0.8,
+						stagger: 0.1,
+						ease: 'power2.out',
+						scrollTrigger: {
+							trigger: '.slide-in-right',
+							start: 'top 85%',
+							toggleActions: 'play none none none'
+						}
+					});
+					
+					gsap.to('.scale-in', {
+						opacity: 1,
+						scale: 1,
+						duration: 0.8,
+						stagger: 0.1,
+						ease: 'back.out(1.7)',
+						scrollTrigger: {
+							trigger: '.scale-in',
+							start: 'top 85%',
+							toggleActions: 'play none none none'
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		/* Light theme colors */
+		--bg-primary: #ffffff;
+		--bg-secondary: #f8fafc;
+		--bg-glass: rgba(255, 255, 255, 0.95);
+		--text-primary: #1e293b;
+		--text-secondary: #64748b;
+		--text-accent: #6366f1;
+		--border-color: rgba(148, 163, 184, 0.4);
+		--shadow-color: rgba(0, 0, 0, 0.15);
+		--gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		--gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+		--gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+	}
+	
+	[data-theme="dark"] {
+		/* Dark theme colors */
+		--bg-primary: #0f172a;
+		--bg-secondary: #1e293b;
+		--bg-glass: rgba(15, 23, 42, 0.8);
+		--text-primary: #f1f5f9;
+		--text-secondary: #94a3b8;
+		--text-accent: #818cf8;
+		--border-color: rgba(148, 163, 184, 0.1);
+		--shadow-color: rgba(0, 0, 0, 0.3);
+		--gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		--gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+		--gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	}
+	
+	body {
+		background: var(--bg-primary);
+		color: var(--text-primary);
+		line-height: 1.6;
+		transition: background-color 0.3s ease, color 0.3s ease;
+		overflow-x: hidden;
+		position: relative;
+	}
+	
+	/* Ensure navigation stays fixed */
+	.nav {
+		position: fixed !important;
+		top: 1rem !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		z-index: 99999 !important;
+		width: calc(100% - 2rem) !important;
+		max-width: 1000px !important;
+	}
+	
+	/* Liquid Glass Effects */
+	.glass {
+		background: var(--bg-glass);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid var(--border-color);
+		border-radius: 20px;
+		box-shadow: 0 8px 32px var(--shadow-color);
+	}
+	
+	.glass-card {
+		background: var(--bg-glass);
+		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
+		border: 1px solid var(--border-color);
+		border-radius: 16px;
+		box-shadow: 0 4px 16px var(--shadow-color);
+		transition: all 0.3s ease;
+	}
+	
+	.glass-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 32px var(--shadow-color);
+	}
+	
+	/* Light theme specific card styles */
+	:root .about-card,
+	:root .modern-contact-card,
+	:root .modern-volunteer-card,
+	:root .modern-language-card,
+	:root .education-card,
+	:root .experience-card {
+		background: rgba(248, 250, 252, 0.8);
+		border: 1px solid rgba(148, 163, 184, 0.3);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+	}
+
+	:root .about-card:hover,
+	:root .modern-contact-card:hover,
+	:root .modern-volunteer-card:hover,
+	:root .modern-language-card:hover,
+	:root .education-card:hover,
+	:root .experience-card:hover {
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+		border-color: rgba(148, 163, 184, 0.4);
+	}
+
+	/* Gradient text */
+	.gradient-text {
+		background: var(--gradient-primary);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	
+	/* Smooth animations */
+	.fade-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+	.slide-in-left {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	
+	.slide-in-right {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	
+	.scale-in {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+	/* Responsive design */
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+	
+	@media (max-width: 768px) {
+		.container {
+			padding: 0 1rem;
+		}
+	}
+	
+	/* Custom scrollbar */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+	
+	::-webkit-scrollbar-track {
+		background: var(--bg-secondary);
+	}
+	
+	::-webkit-scrollbar-thumb {
+		background: var(--gradient-primary);
+		border-radius: 4px;
+	}
+	
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--gradient-secondary);
+	}
+</style>
