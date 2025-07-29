@@ -562,6 +562,34 @@
 		height: 100%;
 		object-fit: contain;
 		object-position: center;
+		loading: eager;
+		decoding: async;
+		max-width: 32px;
+		max-height: 32px;
+	}
+	
+	.tech-icon img {
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+	
+	/* Fallback para iconos rotos */
+	.tech-icon img[src=""],
+	.tech-icon img:not([src]),
+	.tech-icon img[src="#"] {
+		display: none;
+	}
+	
+	.tech-icon img[src=""]:after,
+	.tech-icon img:not([src]):after,
+	.tech-icon img[src="#"]:after {
+		content: "⚙️";
+		display: block;
+		font-size: 24px;
+		text-align: center;
+		line-height: 32px;
+		color: var(--text-accent);
 	}
 	
 	.tech-item:hover .tech-icon {
@@ -659,6 +687,42 @@
 		.tech-icon {
 			width: 28px;
 			height: 28px;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.tech-icon img {
+			max-width: 28px;
+			max-height: 28px;
+			width: auto;
+			height: auto;
+			display: block;
+			margin: 0 auto;
+		}
+		
+		/* Fallback mejorado para móviles */
+		.tech-icon img:not([src]),
+		.tech-icon img[src=""],
+		.tech-icon img[src="#"] {
+			display: none;
+		}
+		
+		.tech-icon img:not([src])::after,
+		.tech-icon img[src=""]::after,
+		.tech-icon img[src="#"]::after {
+			content: "🔧";
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 20px;
+			width: 28px;
+			height: 28px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: var(--text-accent);
 		}
 		
 		.tech-name {
@@ -699,3 +763,68 @@
 		}
 	}
 </style>
+
+<script>
+	// Manejo de errores de carga de imágenes
+	document.addEventListener('DOMContentLoaded', function() {
+		const techImages = document.querySelectorAll('.tech-icon img');
+		
+		techImages.forEach(img => {
+			img.addEventListener('error', function() {
+				// Crear un elemento de fallback
+				const fallback = document.createElement('div');
+				fallback.style.cssText = `
+					width: 100%;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 20px;
+					color: var(--text-accent);
+					background: rgba(255, 255, 255, 0.1);
+					border-radius: 8px;
+				`;
+				
+				// Obtener el nombre de la tecnología del alt o del texto siguiente
+				const techName = this.alt || this.parentElement.nextElementSibling?.textContent || '🔧';
+				
+				// Mapeo de iconos de fallback
+				const iconMap = {
+					'Python': '🐍',
+					'Java': '☕',
+					'JavaScript': '🟨',
+					'C++': '⚡',
+					'Bash': '💻',
+					'Go': '🔵',
+					'Flask': '🌶️',
+					'Django': '🎸',
+					'Vue.js': '💚',
+					'MongoDB': '🍃',
+					'MySQL': '🐬',
+					'Docker': '🐳',
+					'Kubernetes': '⚓',
+					'Linux': '🐧',
+					'Jenkins': '👨‍🔧',
+					'GitHub': '🐙',
+					'GitLab': '🦊',
+					'Postman': '📮',
+					'Elasticsearch': '🔍',
+					'InfluxDB': '📊'
+				};
+				
+				fallback.textContent = iconMap[techName] || '🔧';
+				
+				// Reemplazar la imagen rota con el fallback
+				this.style.display = 'none';
+				this.parentElement.appendChild(fallback);
+			});
+			
+			// Forzar recarga si la imagen no carga en 3 segundos
+			setTimeout(() => {
+				if (!img.complete || img.naturalHeight === 0) {
+					img.dispatchEvent(new Event('error'));
+				}
+			}, 3000);
+		});
+	});
+</script>

@@ -200,7 +200,6 @@
 	
 	.contact-method:hover {
 		background: var(--bg-secondary);
-		transform: translateX(5px);
 	}
 	
 	.method-icon {
@@ -297,9 +296,13 @@
 		}
 		
 		.contact-method {
-			flex-direction: column;
-			text-align: center;
-			gap: 0.5rem;
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
+			margin-bottom: 1.5rem;
+			padding: 1rem;
+			border-radius: 12px;
+			transition: all 0.3s ease;
 		}
 		
 		.social-grid {
@@ -367,8 +370,10 @@
 		}
 		
 		.method-info {
-			align-items: center;
-			text-align: center;
+			align-items: flex-start;
+			text-align: left;
+			justify-content: center;
+			height: 40px;
 		}
 		
 		.method-info h4 {

@@ -77,7 +77,19 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 				const systemTheme = prefersDark ? 'dark' : 'light';
 				const savedTheme = localStorage.getItem('theme') || systemTheme;
+				
+				// Apply theme to both html and body immediately
 				document.documentElement.setAttribute('data-theme', savedTheme);
+				document.body.setAttribute('data-theme', savedTheme);
+				
+				// Force immediate style application
+				if (savedTheme === 'dark') {
+					document.body.style.background = '#0f172a';
+					document.body.style.color = '#f1f5f9';
+				} else {
+					document.body.style.background = '#ffffff';
+					document.body.style.color = '#1e293b';
+				}
 				
 				// Set initial icon state
 				setTimeout(() => {
@@ -105,9 +117,19 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 			function toggleTheme() {
 				const currentTheme = document.documentElement.getAttribute('data-theme');
 				const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+				
+				// Force immediate theme change
 				document.documentElement.setAttribute('data-theme', newTheme);
+				document.body.setAttribute('data-theme', newTheme);
 				localStorage.setItem('theme', newTheme);
 				console.log('Theme changed to:', newTheme);
+				
+				// Force repaint by temporarily changing a style
+				const body = document.body;
+				body.style.opacity = '0.99';
+				requestAnimationFrame(() => {
+					body.style.opacity = '1';
+				});
 				
 				// Update icons directly
 				const sunIcon = document.querySelector('.sun-icon');
@@ -127,6 +149,13 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 						moonIcon.style.opacity = '1';
 						moonIcon.style.transform = 'rotate(0deg) scale(1)';
 					}
+				}
+				
+				// Force CSS variables update on mobile
+				if (window.innerWidth <= 768) {
+					setTimeout(() => {
+						document.documentElement.style.setProperty('--force-update', Math.random());
+					}, 50);
 				}
 			}
 			
@@ -257,23 +286,62 @@ const { title = "Portfolio - Software Engineer", description = "Portfolio profes
 	}
 	
 	body {
-		background: var(--bg-primary);
-		color: var(--text-primary);
+		background: var(--bg-primary) !important;
+		color: var(--text-primary) !important;
 		line-height: 1.6;
-		transition: background-color 0.3s ease, color 0.3s ease;
+		transition: background-color 0.2s ease, color 0.2s ease;
 		overflow-x: hidden;
 		position: relative;
+		min-height: 100vh;
+		min-height: 100dvh;
 	}
 	
-	/* Ensure navigation stays fixed */
-	.nav {
-		position: fixed !important;
-		top: 1rem !important;
-		left: 50% !important;
-		transform: translateX(-50%) !important;
-		z-index: 99999 !important;
-		width: calc(100% - 2rem) !important;
-		max-width: 1000px !important;
+	/* Force theme application on body */
+	body[data-theme="dark"] {
+		background: #0f172a !important;
+		color: #f1f5f9 !important;
+	}
+	
+	body[data-theme="light"] {
+		background: #ffffff !important;
+		color: #1e293b !important;
+	}
+	
+	/* Mobile specific fixes */
+	@media (max-width: 768px) {
+		body {
+			position: relative;
+			overflow-x: hidden;
+			-webkit-overflow-scrolling: touch;
+			padding-top: 5rem;
+		}
+		
+		/* Force navigation to stay fixed on mobile */
+		.nav {
+			position: fixed !important;
+			top: 0.5rem !important;
+			left: 0.5rem !important;
+			right: 0.5rem !important;
+			transform: none !important;
+			z-index: 999999 !important;
+			width: calc(100% - 1rem) !important;
+			max-width: none !important;
+			backdrop-filter: blur(20px) saturate(180%) !important;
+			-webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+		}
+	}
+	
+	/* Ensure navigation stays fixed on desktop */
+	@media (min-width: 769px) {
+		.nav {
+			position: fixed !important;
+			top: 1rem !important;
+			left: 50% !important;
+			transform: translateX(-50%) !important;
+			z-index: 99999 !important;
+			width: calc(100% - 2rem) !important;
+			max-width: 1000px !important;
+		}
 	}
 	
 	/* Liquid Glass Effects */
