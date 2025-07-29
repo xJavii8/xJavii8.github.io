@@ -539,14 +539,17 @@
 		links.forEach(link => {
 			link.addEventListener('click', (e) => {
 				e.preventDefault();
-				const targetId = link.getAttribute('href').substring(1);
-				const targetSection = document.getElementById(targetId);
-				
-				if (targetSection) {
-					targetSection.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start'
-					});
+				const href = link.getAttribute('href');
+				if (href) {
+					const targetId = href.substring(1);
+					const targetSection = document.getElementById(targetId);
+					
+					if (targetSection) {
+						targetSection.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
 				}
 				
 				// Close mobile menu after clicking a link
@@ -559,7 +562,7 @@
 			const nav = document.querySelector('.nav');
 			const navLinks = document.querySelector('.nav-links');
 			
-			if (navLinks && navLinks.classList.contains('active') && !nav.contains(e.target)) {
+			if (navLinks && navLinks.classList.contains('active') && nav && !nav.contains(e.target as Node)) {
 				closeMobileMenu();
 			}
 		});
@@ -576,11 +579,11 @@
 			let current = '';
 			
 			sections.forEach(section => {
-				const sectionTop = section.offsetTop;
+				const sectionTop = (section as HTMLElement).offsetTop;
 				const sectionHeight = section.clientHeight;
 				
 				if (window.scrollY >= sectionTop - 100) {
-					current = section.getAttribute('id');
+					current = section.getAttribute('id') || '';
 				}
 			});
 			
