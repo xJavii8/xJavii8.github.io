@@ -44,9 +44,19 @@ const defaultDescription = description || "Portfolio | Software engineer special
 			
 			// Detect browser language and set appropriate language
 			function detectLanguage() {
-				const browserLang = navigator.language || navigator.languages[0];
-				const isSpanish = browserLang.startsWith('es');
-				const lang = isSpanish ? 'es' : 'en';
+				// Check for saved language preference first
+				const savedLang = localStorage.getItem('language');
+				let lang;
+				
+				if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
+					lang = savedLang;
+				} else {
+					// Fallback to browser language detection
+					const browserLang = navigator.language || navigator.languages[0];
+					const isSpanish = browserLang.startsWith('es');
+					lang = isSpanish ? 'es' : 'en';
+				}
+				
 				document.documentElement.lang = lang;
 				document.documentElement.setAttribute('data-lang', lang);
 				
@@ -171,8 +181,9 @@ const defaultDescription = description || "Portfolio | Software engineer special
 			detectLanguage();
 			initTheme();
 			
-			// Make toggleTheme available globally
+			// Make functions available globally
 			window.toggleTheme = toggleTheme;
+			window.updateLanguageContent = updateLanguageContent;
 			
 			// Initialize GSAP animations when DOM is loaded
 			document.addEventListener('DOMContentLoaded', function() {

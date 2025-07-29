@@ -18,6 +18,11 @@
 		</ul>
 		
 		<div class="nav-controls">
+			<button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+				<span class="lang-es">EN</span>
+				<span class="lang-en">ES</span>
+			</button>
+			
 			<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
 				<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<circle cx="12" cy="12" r="5"></circle>
@@ -146,7 +151,6 @@
 		box-shadow: 
 			0 4px 16px rgba(0, 0, 0, 0.1),
 			inset 0 1px 0 rgba(255, 255, 255, 0.2);
-		transform: translateY(-1px);
 	}
 	
 	/* Dark mode nav links */
@@ -177,7 +181,7 @@
 	.nav-controls {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.75rem;
 	}
 	
 	.theme-toggle {
@@ -257,6 +261,88 @@
 		transform: rotate(0deg) scale(1);
 	}
 	
+	.language-toggle {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		color: var(--text-secondary);
+		cursor: pointer;
+		padding: 0.5rem 0.75rem;
+		border-radius: 12px;
+		transition: all 0.3s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		box-shadow: 
+			0 4px 16px rgba(0, 0, 0, 0.1),
+			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		font-weight: 600;
+		font-size: 0.875rem;
+		min-width: 48px;
+		width: 48px;
+		height: 40px;
+	}
+	
+	.language-toggle:hover {
+		color: var(--text-accent);
+		background: rgba(255, 255, 255, 0.12);
+		transform: scale(1.05);
+		box-shadow: 
+			0 6px 20px rgba(0, 0, 0, 0.15),
+			inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	}
+	
+	/* Dark mode language toggle */
+	[data-theme="dark"] .language-toggle {
+		background: rgba(0, 0, 0, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	
+	[data-theme="dark"] .language-toggle:hover {
+		background: rgba(0, 0, 0, 0.3);
+	}
+	
+	.language-toggle span {
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		position: absolute;
+	}
+	
+	/* Estados base de los textos de idioma */
+	.lang-es {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
+	.lang-en {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	/* Idioma español: mostrar EN */
+	[data-lang="es"] .lang-es {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
+	[data-lang="es"] .lang-en {
+		opacity: 0;
+		transform: rotate(180deg) scale(0.8);
+	}
+	
+	/* Idioma inglés: mostrar ES */
+	[data-lang="en"] .lang-es {
+		opacity: 0;
+		transform: rotate(-180deg) scale(0.8);
+	}
+	
+	[data-lang="en"] .lang-en {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+	
 	.mobile-menu-toggle {
 		display: none;
 		flex-direction: column;
@@ -272,6 +358,33 @@
 		height: 2px;
 		background: var(--text-secondary);
 		transition: all 0.3s ease;
+	}
+	
+	/* Media query para pantallas muy grandes */
+	@media (min-width: 1400px) {
+		.nav-links {
+			gap: 1.5rem;
+		}
+		
+		.nav-links a {
+			padding: 0.5rem 0.8rem;
+			font-size: 0.95rem;
+		}
+		
+		.nav-controls {
+			gap: 0.6rem;
+		}
+	}
+	
+	/* Media query para pantallas grandes */
+	@media (min-width: 1201px) and (max-width: 1399px) {
+		.nav-links {
+			gap: 1.75rem;
+		}
+		
+		.nav-links a {
+			padding: 0.5rem 0.9rem;
+		}
 	}
 	
 	/* Media query para pantallas medianas (pantalla dividida) */
@@ -294,9 +407,47 @@
 		.nav-brand {
 			font-size: 1.3rem;
 		}
+		
+		.language-toggle {
+			padding: 0.4rem 0.6rem;
+			font-size: 0.8rem;
+			min-width: 42px;
+			width: 42px;
+			height: 36px;
+		}
 	}
 	
-	@media (max-width: 1024px) and (min-width: 769px) {
+	/* Media query para pantallas medianas donde puede haber solapamiento */
+	@media (max-width: 1100px) and (min-width: 900px) {
+		.nav-links {
+			gap: 1.2rem;
+		}
+		
+		.nav-links a {
+			padding: 0.4rem 0.7rem;
+			font-size: 0.875rem;
+		}
+		
+		.nav-controls {
+			gap: 0.6rem;
+		}
+		
+		.language-toggle {
+			padding: 0.4rem 0.6rem;
+			font-size: 0.8rem;
+			min-width: 40px;
+			width: 40px;
+			height: 36px;
+		}
+		
+		.theme-toggle {
+			padding: 0.4rem;
+			width: 36px;
+			height: 36px;
+		}
+	}
+	
+	@media (max-width: 1024px) and (min-width: 900px) {
 		.nav-links {
 			gap: 1rem;
 		}
@@ -304,6 +455,58 @@
 		.nav-links a {
 			padding: 0.4rem 0.6rem;
 			font-size: 0.85rem;
+		}
+		
+		.nav-controls {
+			gap: 0.5rem;
+		}
+		
+		.language-toggle {
+			padding: 0.375rem 0.5rem;
+			font-size: 0.75rem;
+			min-width: 38px;
+			width: 38px;
+			height: 34px;
+		}
+		
+		.theme-toggle {
+			padding: 0.375rem;
+			width: 34px;
+			height: 34px;
+		}
+	}
+	
+	/* Para pantallas muy ajustadas */
+	@media (max-width: 899px) and (min-width: 769px) {
+		.nav-links {
+			gap: 0.8rem;
+		}
+		
+		.nav-links a {
+			padding: 0.3rem 0.5rem;
+			font-size: 0.8rem;
+		}
+		
+		.nav-controls {
+			gap: 0.4rem;
+		}
+		
+		.language-toggle {
+			padding: 0.3rem 0.4rem;
+			font-size: 0.7rem;
+			min-width: 36px;
+			width: 36px;
+			height: 32px;
+		}
+		
+		.theme-toggle {
+			padding: 0.3rem;
+			width: 32px;
+			height: 32px;
+		}
+		
+		.nav-brand {
+			font-size: 1.2rem;
 		}
 	}
 	
@@ -518,6 +721,24 @@
 			font-size: 1.125rem;
 		}
 		
+		.nav-controls {
+			gap: 0.5rem;
+		}
+		
+		.language-toggle {
+			padding: 0.375rem 0.5rem;
+			font-size: 0.75rem;
+			min-width: 38px;
+			width: 38px;
+			height: 32px;
+		}
+		
+		.theme-toggle {
+			padding: 0.375rem;
+			width: 32px;
+			height: 32px;
+		}
+		
 		.nav-links {
 			padding: 1rem;
 			gap: 0.5rem;
@@ -660,6 +881,29 @@
 		updateNavText();
 		initNavigation();
 		
+		// Initialize language toggle state
+		setTimeout(() => {
+			const currentLang = document.documentElement.getAttribute('data-lang') || 'es';
+			const langEs = document.querySelector('.lang-es');
+			const langEn = document.querySelector('.lang-en');
+			
+			if (langEs && langEn) {
+				if (currentLang === 'es') {
+					// Spanish: show EN button
+					(langEs as HTMLElement).style.opacity = '1';
+					(langEs as HTMLElement).style.transform = 'rotate(0deg) scale(1)';
+					(langEn as HTMLElement).style.opacity = '0';
+					(langEn as HTMLElement).style.transform = 'rotate(180deg) scale(0.8)';
+				} else {
+					// English: show ES button
+					(langEs as HTMLElement).style.opacity = '0';
+					(langEs as HTMLElement).style.transform = 'rotate(-180deg) scale(0.8)';
+					(langEn as HTMLElement).style.opacity = '1';
+					(langEn as HTMLElement).style.transform = 'rotate(0deg) scale(1)';
+				}
+			}
+		}, 100);
+		
 		// Mobile menu toggle handler with better event handling
 		const mobileToggle = document.querySelector('.mobile-menu-toggle');
 		if (mobileToggle) {
@@ -673,6 +917,55 @@
 			});
 		}
 	});
+	
+	// Language toggle functionality
+	function toggleLanguage() {
+		const currentLang = document.documentElement.getAttribute('data-lang') || 'es';
+		const newLang = currentLang === 'es' ? 'en' : 'es';
+		
+		// Update language attributes
+		document.documentElement.lang = newLang;
+		document.documentElement.setAttribute('data-lang', newLang);
+		
+		// Save language preference
+		localStorage.setItem('language', newLang);
+		
+		// Update language toggle button state
+		const langEs = document.querySelector('.lang-es');
+		const langEn = document.querySelector('.lang-en');
+		
+		if (langEs && langEn) {
+			if (newLang === 'es') {
+				// Spanish: show EN button
+				(langEs as HTMLElement).style.opacity = '1';
+				(langEs as HTMLElement).style.transform = 'rotate(0deg) scale(1)';
+				(langEn as HTMLElement).style.opacity = '0';
+				(langEn as HTMLElement).style.transform = 'rotate(180deg) scale(0.8)';
+			} else {
+				// English: show ES button
+				(langEs as HTMLElement).style.opacity = '0';
+				(langEs as HTMLElement).style.transform = 'rotate(-180deg) scale(0.8)';
+				(langEn as HTMLElement).style.opacity = '1';
+				(langEn as HTMLElement).style.transform = 'rotate(0deg) scale(1)';
+			}
+		}
+		
+		// Update all text content
+		updateNavText();
+		
+		// Trigger global language update
+		// @ts-ignore - Custom property added in Layout.astro
+		if (window.updateLanguageContent) {
+			// @ts-ignore - Custom property added in Layout.astro
+			window.updateLanguageContent(newLang);
+		}
+		
+		console.log('Language changed to:', newLang);
+	}
+	
+	// Make toggleLanguage available globally
+	// @ts-ignore - Custom property assignment
+	window.toggleLanguage = toggleLanguage;
 	
 	// Update text when language changes
 	const observer = new MutationObserver((mutations) => {
