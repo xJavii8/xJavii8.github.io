@@ -74,7 +74,7 @@ const defaultDescription = description || "Portfolio | Software engineer special
 					} else if (element.tagName === 'META' && element.getAttribute('name') === 'description') {
 						element.setAttribute('content', text);
 					} else {
-						element.textContent = text;
+						element.innerHTML = text;
 					}
 				}
 			});
