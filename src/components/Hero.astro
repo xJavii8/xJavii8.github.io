@@ -1,5 +1,6 @@
 ---
 // Hero section component
+import { Image } from 'astro:assets';
 ---
 
 <section id="inicio" class="hero">
@@ -27,10 +28,10 @@
 				
 				<div class="hero-actions scale-in">
 					<a href="#contacto" class="btn btn-primary">
-						<span data-en="Get in Touch" data-es="Contactar">Contactar</span>
+						<span data-en="Get in touch" data-es="Contactar">Contactar</span>
 					</a>
 					<a href="#sobre-mi" class="btn btn-secondary">
-						<span data-en="Learn More" data-es="Conocer más">Conocer más</span>
+						<span data-en="Learn more" data-es="Conocer más">Conocer más</span>
 					</a>
 				</div>
 			</div>
@@ -38,15 +39,15 @@
 			<div class="hero-visual slide-in-right">
 				<div class="profile-card glass-card">
 					<div class="profile-image">
-						<img src="/javi.jpg" alt="Francisco Javier Martínez Martínez" class="profile-photo" />
+						<Image src="/javi.jpg" alt="Francisco Javier Martínez Martínez" class="profile-photo" width={200} height={200} />
 					</div>
 					<div class="profile-info">
 						<h3>Francisco Javier Martínez Martínez</h3>
-			<p class="profile-role" data-en="Software Engineer" data-es="Ingeniero de Software">Ingeniero de Software</p>
+			<p class="profile-role" data-en="Software engineer" data-es="Ingeniero de software">Ingeniero de software</p>
 					<div class="profile-stats">
 						<div class="stat">
 							<span class="stat-number">2+</span>
-							<span class="stat-label" data-en="Years Experience" data-es="Años de Experiencia">Años de Experiencia</span>
+							<span class="stat-label" data-en="Years experience" data-es="Años de experiencia">Años de experiencia</span>
 						</div>
 					</div>
 					</div>

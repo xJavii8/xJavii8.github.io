@@ -1,5 +1,6 @@
 ---
 // About section component
+import { Image } from 'astro:assets';
 ---
 
 <section id="sobre-mi" class="about-section">
@@ -20,17 +21,27 @@
 						</svg>
 					</div>
 					<h3 data-en="My journey" data-es="Mi trayectoria">Mi trayectoria</h3>
-					<p data-en="I'm a Computer Engineer specialized in Information Technologies with experience in IAM (Keycloak/XACML) and EU/national R&D projects. Currently working as a Junior Researcher at Odin Solutions and starting a Master's in Cybersecurity." data-es="Soy Ingeniero Informático especializado en Tecnologías de la Información con experiencia en IAM (Keycloak/XACML) y proyectos I+D+i europeos y nacionales. Actualmente trabajo como Investigador Junior en Odin Solutions e iniciando un máster en ciberseguridad.">Soy Ingeniero Informático especializado en Tecnologías de la Información con experiencia en IAM (Keycloak/XACML) y proyectos I+D+i europeos y nacionales. Actualmente trabajo como Investigador Junior en Odin Solutions e iniciando un máster en ciberseguridad.</p>
+					<p data-en="I'm a Computer Engineer specialized in Information Technologies with experience in IAM (Keycloak/XACML) and EU/national R&D projects. Currently working as a Researcher at Odin Solutions and starting a Master's in Cybersecurity." data-es="Soy Ingeniero Informático especializado en Tecnologías de la Información con experiencia en IAM (Keycloak/XACML) y proyectos I+D+i europeos y nacionales. Actualmente trabajo como Investigador en Odin Solutions e iniciando un máster en ciberseguridad.">Soy Ingeniero Informático especializado en Tecnologías de la Información con experiencia en IAM (Keycloak/XACML) y proyectos I+D+i europeos y nacionales. Actualmente trabajo como Investigador en Odin Solutions e iniciando un máster en ciberseguridad.</p>
 					
 					<p data-en="My expertise focuses on backend development and cybersecurity: designing APIs and services in Python (Flask), building CI/CD with GitHub/GitLab and Jenkins, and deploying with Docker/Kubernetes. I have experience in multiple EU projects like MASTERPIECE, 6G-PATH, and others." data-es="Mi experiencia se centra en desarrollo backend y ciberseguridad: diseño de APIs y servicios en Python (Flask), CI/CD con GitHub/GitLab y Jenkins, y despliegue en Docker/Kubernetes. Tengo experiencia en múltiples proyectos europeos como MASTERPIECE, 6G-PATH, y otros.">Mi experiencia se centra en desarrollo backend y ciberseguridad: diseño de APIs y servicios en Python (Flask), CI/CD con GitHub/GitLab y Jenkins, y despliegue en Docker/Kubernetes. Tengo experiencia en múltiples proyectos europeos como MASTERPIECE, 6G-PATH, y otros.</p>
 					
 					<div class="interests-section">
-						<h4 data-en="Interests & hobbies" data-es="Intereses y aficiones">Intereses y aficiones</h4>
+						<h4 data-en="Professional interests" data-es="Intereses profesionales">Intereses profesionales</h4>
 						<div class="interest-tags">
 							<span class="tag" data-en="Cybersecurity" data-es="Ciberseguridad">Ciberseguridad</span>
 							<span class="tag" data-en="R&D Projects" data-es="Proyectos I+D+i">Proyectos I+D+i</span>
 							<span class="tag" data-en="IoT" data-es="IoT">IoT</span>
 							<span class="tag" data-en="Blockchain" data-es="Blockchain">Blockchain</span>
+							<span class="tag" data-en="Continuous learning" data-es="Aprendizaje continuo">Aprendizaje continuo</span>
+						</div>
+					</div>
+					
+					<div class="soft-skills-section">
+						<h4 data-en="Soft skills" data-es="Habilidades blandas">Habilidades blandas</h4>
+						<div class="interest-tags">
+							<span class="tag" data-en="Cross-team collaboration" data-es="Colaboración entre equipos">Colaboración entre equipos</span>
+							<span class="tag" data-en="Ownership (self-management)" data-es="Autogestión">Autogestión</span>
+							<span class="tag" data-en="Attention to detail" data-es="Atención al detalle">Atención al detalle</span>
 							<span class="tag" data-en="Continuous learning" data-es="Aprendizaje continuo">Aprendizaje continuo</span>
 						</div>
 					</div>
@@ -50,41 +61,41 @@
 							<h4 data-en="Programming languages" data-es="Lenguajes de programación">Lenguajes de programación</h4>
 							<div class="tech-grid">
 								<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-								</div>
-								<span class="tech-name">Python</span>
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-								</div>
-								<span class="tech-name">Java</span>
+							<span class="tech-name">Python</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-								</div>
-								<span class="tech-name">JavaScript</span>
+							<span class="tech-name">Java</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" />
-								</div>
-								<span class="tech-name">C/C++</span>
+							<span class="tech-name">JavaScript</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" />
-								</div>
-								<span class="tech-name">Bash</span>
+							<span class="tech-name">C/C++</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon bash-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" />
-								</div>
-								<span class="tech-name">Go</span>
+							<span class="tech-name">Bash</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" width={32} height={32} />
 							</div>
+							<span class="tech-name">Go</span>
+						</div>
 							</div>
 						</div>
 						
@@ -92,35 +103,35 @@
 							<h4 data-en="Frameworks & libraries" data-es="Frameworks y librerías">Frameworks y librerías</h4>
 							<div class="tech-grid">
 								<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" />
-								</div>
-								<span class="tech-name">Flask</span>
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" />
-								</div>
-								<span class="tech-name">Django</span>
+							<span class="tech-name">Flask</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Swing" />
-								</div>
-								<span class="tech-name">Swing</span>
+							<span class="tech-name">Django</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Swing" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" />
-								</div>
-								<span class="tech-name">Vue.js</span>
+							<span class="tech-name">Swing</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://nodered.org/about/resources/media/node-red-icon-2.png" alt="Node-RED" style="object-fit: contain;" />
-								</div>
-								<span class="tech-name">Node-RED</span>
+							<span class="tech-name">Vue.js</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://nodered.org/about/resources/media/node-red-icon-2.png" alt="Node-RED" width={32} height={32} style="object-fit: contain;" />
 							</div>
+							<span class="tech-name">Node-RED</span>
+						</div>
 							</div>
 						</div>
 						
@@ -128,29 +139,29 @@
 							<h4 data-en="Databases" data-es="Bases de datos">Bases de datos</h4>
 							<div class="tech-grid">
 								<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-								</div>
-								<span class="tech-name">MongoDB</span>
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
-								</div>
-								<span class="tech-name">MySQL</span>
+							<span class="tech-name">MongoDB</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/influxdb/influxdb-original.svg" alt="InfluxDB" />
-								</div>
-								<span class="tech-name">InfluxDB</span>
+							<span class="tech-name">MySQL</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/influxdb/influxdb-original.svg" alt="InfluxDB" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" alt="Elasticsearch" />
-								</div>
-								<span class="tech-name">Elasticsearch</span>
+							<span class="tech-name">InfluxDB</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg" alt="Elasticsearch" width={32} height={32} />
 							</div>
+							<span class="tech-name">Elasticsearch</span>
+						</div>
 							</div>
 						</div>
 						
@@ -158,41 +169,59 @@
 							<h4 data-en="DevOps & cloud" data-es="DevOps y nube">DevOps y nube</h4>
 							<div class="tech-grid">
 								<div class="tech-item">
-								<div class="tech-icon">
-									<img src="/docker-mark-blue.png" alt="Docker" />
-								</div>
-								<span class="tech-name">Docker</span>
+							<div class="tech-icon">
+								<Image src="/docker-mark-blue.png" alt="Docker" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" />
-								</div>
-								<span class="tech-name">Kubernetes</span>
+							<span class="tech-name">Docker</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" />
-								</div>
-								<span class="tech-name">Linux</span>
+							<span class="tech-name">Kubernetes</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" />
-								</div>
-								<span class="tech-name">Jenkins</span>
+							<span class="tech-name">Linux</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-								</div>
-								<span class="tech-name">GitHub</span>
+							<span class="tech-name">Jenkins</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width={32} height={32} />
 							</div>
-							<div class="tech-item">
-								<div class="tech-icon">
-									<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" />
-								</div>
-								<span class="tech-name">GitLab</span>
+							<span class="tech-name">GitHub</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" width={32} height={32} />
 							</div>
+							<span class="tech-name">GitLab</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="NGINX" width={32} height={32} />
+							</div>
+							<span class="tech-name">NGINX</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="OpenAPI (Swagger)" width={32} height={32} />
+							</div>
+							<span class="tech-name">OpenAPI</span>
+						</div>
+						<div class="tech-item">
+							<div class="tech-icon">
+								<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/traefikproxy/traefikproxy-original.svg" alt="Traefik" width={32} height={32} />
+							</div>
+							<span class="tech-name">Traefik</span>
+						</div>
 							</div>
 					</div>
 					
@@ -201,7 +230,7 @@
 						<div class="tech-grid">
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://www.svgrepo.com/show/354202/postman-icon.svg" alt="Postman" />
+									<Image src="https://www.svgrepo.com/show/354202/postman-icon.svg" alt="Postman" width={32} height={32} />
 								</div>
 								<span class="tech-name">Postman</span>
 							</div>
@@ -220,7 +249,7 @@
 							</div>
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/K6-logo.svg/374px-K6-logo.svg.png" alt="k6" />
+									<Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/K6-logo.svg/374px-K6-logo.svg.png" alt="k6" width={32} height={32} />
 								</div>
 								<span class="tech-name">k6</span>
 							</div>
@@ -232,7 +261,7 @@
 						<div class="tech-grid">
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Keycloak_Logo.png" alt="Keycloak" />
+									<Image src="https://upload.wikimedia.org/wikipedia/commons/2/29/Keycloak_Logo.png" alt="Keycloak" width={32} height={32} />
 								</div>
 								<span class="tech-name">Keycloak</span>
 							</div>
@@ -254,19 +283,19 @@
 						<div class="tech-grid">
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://www.fiware.org/custom/brand-guide/img/logo/fiware/secondary/png/logo-fiware-secondary.png" alt="FIWARE" />
+									<Image src="https://www.fiware.org/custom/brand-guide/img/logo/fiware/secondary/png/logo-fiware-secondary.png" alt="FIWARE" width={32} height={32} />
 								</div>
 								<span class="tech-name">FIWARE</span>
 							</div>
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://cdn.simpleicons.org/mqtt" alt="MQTT" />
+									<Image src="https://cdn.simpleicons.org/mqtt" alt="MQTT" width={32} height={32} />
 								</div>
 								<span class="tech-name">MQTT</span>
 							</div>
 							<div class="tech-item">
 								<div class="tech-icon">
-									<img src="https://productos-iot.com/wp-content/uploads/2018/08/iot-lora-alliance-logo.svg_.png" alt="LoRaWAN" />
+									<Image src="https://productos-iot.com/wp-content/uploads/2018/08/iot-lora-alliance-logo.svg_.png" alt="LoRaWAN" width={32} height={32} />
 								</div>
 								<span class="tech-name">LoRaWAN</span>
 							</div>
@@ -357,7 +386,14 @@
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 	
-	.interests-section h4 {
+	.soft-skills-section {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	
+	.interests-section h4,
+	.soft-skills-section h4 {
 		font-size: 1.125rem;
 		font-weight: 600;
 		margin-bottom: 1rem;
@@ -366,7 +402,8 @@
 		padding-left: 1rem;
 	}
 	
-	.interests-section h4::before {
+	.interests-section h4::before,
+	.soft-skills-section h4::before {
 		content: '';
 		position: absolute;
 		left: 0;
@@ -761,6 +798,11 @@
 		.skill-category h4 {
 			font-size: 1rem;
 		}
+	}
+	
+	/* Bash logo dark mode fix */
+	[data-theme="dark"] .bash-icon img {
+		filter: invert(1) brightness(0.9);
 	}
 </style>
 

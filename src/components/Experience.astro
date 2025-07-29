@@ -20,7 +20,7 @@
 						</div>
 					</div>
 					<div class="job-info">
-						<h3 class="job-title" data-en="Junior researcher" data-es="Investigador junior">Investigador junior</h3>
+						<h3 class="job-title" data-en="Junior Researcher" data-es="Investigador junior">Investigador junior</h3>
 						<div class="company-name">Odin Solutions</div>
 						<div class="job-period" data-en="February 2023 - Present" data-es="Febrero 2023 - Presente">Febrero 2023 - Presente</div>
 					</div>
@@ -78,6 +78,7 @@
 							<span class="tech-tag">Java</span>
 							<span class="tech-tag">Go</span>
 							<span class="tech-tag">REST APIs</span>
+							<span class="tech-tag">OpenAPI</span>
 						</div>
 					</div>
 					<div class="tech-category">
@@ -89,7 +90,7 @@
 						</div>
 					</div>
 					<div class="tech-category">
-						<span class="category-label" data-en="IoT & Blockchain" data-es="IoT & Blockchain">IoT & Blockchain</span>
+						<span class="category-label" data-en="IoT & blockchain" data-es="IoT & blockchain">IoT & blockchain</span>
 						<div class="tech-tags">
 							<span class="tech-tag">LoRaWAN</span>
 							<span class="tech-tag">FIWARE</span>
@@ -99,7 +100,7 @@
 						</div>
 					</div>
 					<div class="tech-category">
-						<span class="category-label" data-en="Databases" data-es="Bases de Datos">Bases de Datos</span>
+						<span class="category-label" data-en="Databases" data-es="Bases de datos">Bases de datos</span>
 						<div class="tech-tags">
 							<span class="tech-tag">MongoDB</span>
 							<span class="tech-tag">InfluxDB</span>
@@ -107,11 +108,12 @@
 						</div>
 					</div>
 					<div class="tech-category">
-						<span class="category-label" data-en="DevOps & Infrastructure" data-es="DevOps & Infraestructura">DevOps & Infraestructura</span>
+						<span class="category-label" data-en="DevOps & infrastructure" data-es="DevOps & infraestructura">DevOps & infraestructura</span>
 						<div class="tech-tags">
 							<span class="tech-tag">Docker</span>
 							<span class="tech-tag">Kubernetes</span>
 							<span class="tech-tag">NGINX</span>
+							<span class="tech-tag">Traefik</span>
 							<span class="tech-tag">Bash</span>
 							<span class="tech-tag">Jenkins</span>
 							<span class="tech-tag">Git/GitHub/GitLab</span>
@@ -119,7 +121,7 @@
 						</div>
 					</div>
 					<div class="tech-category">
-						<span class="category-label" data-en="Managed Services" data-es="Servicios Administrados">Servicios Administrados</span>
+						<span class="category-label" data-en="Managed services" data-es="Servicios administrados">Servicios administrados</span>
 						<div class="tech-tags">
 							<span class="tech-tag">Overleaf</span>
 							<span class="tech-tag">DokuWiki</span>
@@ -332,11 +334,17 @@
 		flex-shrink: 0;
 		color: var(--text-accent);
 		margin-top: 2px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	
 	.achievement-icon svg {
 		width: 100%;
 		height: 100%;
+		fill: currentColor;
+		stroke: none;
+		display: block;
 	}
 	
 	.achievement-item p {
