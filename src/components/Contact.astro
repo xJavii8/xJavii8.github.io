@@ -36,22 +36,49 @@
 						</div>
 						
 						<div class="contact-method">
-							<div class="method-icon">
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-									<circle cx="12" cy="10" r="3"></circle>
-								</svg>
-							</div>
-							<div class="method-info">
-								<h4 data-en="Location" data-es="Ubicación">Ubicación</h4>
-								<span data-en="Murcia, Spain" data-es="Murcia, España">Murcia, España</span>
-							</div>
+						<div class="method-icon">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+						</div>
+						<div class="method-info">
+							<h4 data-en="Location" data-es="Ubicación">Ubicación</h4>
+							<span data-en="Murcia, Spain" data-es="Murcia, España">Murcia, España</span>
 						</div>
 					</div>
 					
-					<div class="social-links">
-						<h4 data-en="Connect with me" data-es="Conéctate conmigo">Conéctate conmigo</h4>
-						<div class="social-grid">
+					<div class="contact-method">
+						<div class="method-icon">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+						</div>
+						<div class="method-info">
+							<h4 data-en="Phone" data-es="Teléfono">Teléfono</h4>
+							<span data-en="Available upon request" data-es="Disponible a petición">Disponible a petición</span>
+						</div>
+					</div>
+					</div>
+				
+				<!-- CV Download Button -->
+				<div class="cv-download">
+					<a href="#" id="cv-download-btn" class="social-link cv-button" target="_blank" rel="noopener noreferrer">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+							<polyline points="14,2 14,8 20,8"></polyline>
+							<line x1="16" y1="13" x2="8" y2="13"></line>
+							<line x1="16" y1="17" x2="8" y2="17"></line>
+							<polyline points="10,9 9,9 8,9"></polyline>
+						</svg>
+						<span data-en="Download CV" data-es="Descargar CV">Descargar CV</span>
+					</a>
+				</div>
+				
+				<div class="social-links">
+					<h4 data-en="Connect with me" data-es="Conéctate conmigo">Conéctate conmigo</h4>
+					
+					<div class="social-grid">
 						<a href="https://linkedin.com/in/fjaviermm" class="social-link" target="_blank" rel="noopener noreferrer">
 							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -404,6 +431,12 @@
 			text-align: center;
 		}
 		
+		.cv-download {
+			margin: 1.5rem 0;
+			display: flex;
+			justify-content: center;
+		}
+		
 		.social-grid {
 			grid-template-columns: repeat(2, 1fr);
 			gap: 0.75rem;
@@ -422,4 +455,42 @@
 			height: 18px;
 		}
 	}
+	
+	/* Desktop specific spacing for CV button */
+	@media (min-width: 768px) {
+		.cv-download {
+			margin: 2rem 0;
+		}
+	}
 </style>
+
+<script>
+	// Function to update CV link based on current language
+	function updateCVLink() {
+		const cvButton = document.getElementById('cv-download-btn') as HTMLAnchorElement;
+		if (!cvButton) return;
+		
+		// Get current language from localStorage or default to 'es'
+		const currentLang = localStorage.getItem('language') || 'es';
+		
+		// Set CV link based on language
+		if (currentLang === 'en') {
+			cvButton.href = '/CV_Javi-EN-public.pdf';
+		} else {
+			cvButton.href = '/CV_Javi-ES-public.pdf';
+		}
+	}
+	
+	// Update CV link on page load
+	document.addEventListener('DOMContentLoaded', updateCVLink);
+	
+	// Listen for language changes
+	document.addEventListener('languageChanged', updateCVLink);
+	
+	// Also update when storage changes (for cross-tab sync)
+	window.addEventListener('storage', function(e) {
+		if (e.key === 'language') {
+			updateCVLink();
+		}
+	});
+</script>

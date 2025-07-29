@@ -960,7 +960,9 @@
 			window.updateLanguageContent(newLang);
 		}
 		
-		console.log('Language changed to:', newLang);
+		// Dispatch custom event for other components to listen
+		document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: newLang } }));
+		
 	}
 	
 	// Make toggleLanguage available globally
