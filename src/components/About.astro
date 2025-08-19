@@ -294,11 +294,17 @@ import { Image } from 'astro:assets';
 								<span class="tech-name">Locust</span>
 							</div>
 							<div class="tech-item">
-								<div class="tech-icon">
-									<Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/K6-logo.svg/374px-K6-logo.svg.png" alt="k6" width={32} height={32} loading="lazy" decoding="async" />
-								</div>
-								<span class="tech-name">k6</span>
-							</div>
+				<div class="tech-icon">
+					<Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/K6-logo.svg/374px-K6-logo.svg.png" alt="k6" width={32} height={32} loading="lazy" decoding="async" />
+				</div>
+				<span class="tech-name">k6</span>
+			</div>
+			<div class="tech-item">
+				<div class="tech-icon">
+					<Image src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytest/pytest-original.svg" alt="PyTest" width={32} height={32} loading="lazy" decoding="async" />
+				</div>
+				<span class="tech-name">PyTest</span>
+			</div>
 							</div>
 					</div>
 					
@@ -589,7 +595,7 @@ import { Image } from 'astro:assets';
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		padding: 1.25rem;
+		padding: 1.25rem 1rem;
 		border-radius: 14px;
 		background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08));
 		border: 1px solid rgba(255, 255, 255, 0.1);
@@ -599,6 +605,7 @@ import { Image } from 'astro:assets';
 		color: var(--text-secondary);
 		position: relative;
 		overflow: hidden;
+		min-width: 0;
 	}
 	
 	.tech-item::before {
@@ -685,6 +692,11 @@ import { Image } from 'astro:assets';
 		color: var(--text-color);
 		text-align: center;
 		transition: color 0.3s ease;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+		hyphens: auto;
+		min-width: 0;
+		flex: 1;
 	}
 	
 	.tech-item:hover .tech-name {
